@@ -16,12 +16,12 @@ export function CallToAction() {
             anything important I should know. This is the best place to start if
             you want a proper growth conversation.
           </p>
-          <div className="mt-8 rounded-[30px] border border-white/10 bg-white p-6 shadow-2xl shadow-primary-950/20 sm:p-8">
-            <div>
-              <h3 className="text-2xl font-black text-slate-950">
+          <div className="mt-8 rounded-[34px] border border-white/10 bg-white/95 p-6 shadow-[0_36px_90px_-42px_rgba(15,23,42,0.6)] backdrop-blur sm:p-8">
+            <div className="flex flex-col gap-4 border-b border-slate-100 pb-6">
+              <h3 className="text-2xl font-black text-slate-950 sm:text-[2rem]">
                 Claim your free strategy call
               </h3>
-              <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
+              <p className="max-w-2xl text-sm leading-7 text-slate-600">
                 Clean, simple, and direct. Once submitted, the lead details are
                 sent to your email and the visitor is redirected to WhatsApp.
               </p>
