@@ -1,80 +1,92 @@
-"use client";
-
-import { FormEvent, useState } from "react";
-
-const DEFAULT_WHATSAPP_NUMBER = "9779800000000";
+const WHATSAPP_REDIRECT_URL = "https://wa.me/message/SP2UQ22RS3KOD1";
 
 export function LeadForm() {
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-    const name = formData.get("name")?.toString().trim() ?? "";
-    const phone = formData.get("phone")?.toString().trim() ?? "";
-    const businessType = formData.get("businessType")?.toString().trim() ?? "";
-
-    const number =
-      process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? DEFAULT_WHATSAPP_NUMBER;
-
-    const message = encodeURIComponent(
-      `Namaste, my name is ${name}. Phone: ${phone}. Business type: ${businessType}. I want to book a free strategy call for Meta Ads growth.`
-    );
-
-    window.open(`https://wa.me/${number}?text=${message}`, "_blank", "noopener,noreferrer");
-    setSubmitted(true);
-    event.currentTarget.reset();
-  };
-
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form
+      action="https://formsubmit.co/bsaugat59@gmail.com"
+      method="POST"
+      className="space-y-6"
+    >
+      <input type="hidden" name="_subject" value="New Strategy Call Lead" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value={WHATSAPP_REDIRECT_URL} />
+
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block">
-          <span className="mb-2 block text-sm font-semibold text-slate-700">Name</span>
+          <span className="mb-2 block text-sm font-semibold text-slate-700">
+            Full name
+          </span>
           <input
             required
-            name="name"
+            name="full_name"
             type="text"
-            placeholder="Your name"
-            className="w-full rounded-2xl border-slate-200 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-primary-400 focus:ring-primary-400"
+            placeholder="Your full name"
+            className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-slate-900 placeholder:text-slate-400 focus:border-primary-400 focus:bg-white focus:ring-primary-400"
           />
         </label>
         <label className="block">
-          <span className="mb-2 block text-sm font-semibold text-slate-700">Phone</span>
+          <span className="mb-2 block text-sm font-semibold text-slate-700">
+            Email
+          </span>
           <input
             required
-            name="phone"
-            type="tel"
-            placeholder="98XXXXXXXX"
-            className="w-full rounded-2xl border-slate-200 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-primary-400 focus:ring-primary-400"
+            name="email"
+            type="email"
+            placeholder="you@example.com"
+            className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-slate-900 placeholder:text-slate-400 focus:border-primary-400 focus:bg-white focus:ring-primary-400"
           />
         </label>
       </div>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="block">
+          <span className="mb-2 block text-sm font-semibold text-slate-700">
+            WhatsApp number
+          </span>
+          <input
+            required
+            name="whatsapp_number"
+            type="tel"
+            placeholder="98XXXXXXXX"
+            className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-slate-900 placeholder:text-slate-400 focus:border-primary-400 focus:bg-white focus:ring-primary-400"
+          />
+        </label>
+        <label className="block">
+          <span className="mb-2 block text-sm font-semibold text-slate-700">
+            Website / Facebook URL
+          </span>
+          <input
+            name="website_or_facebook_url"
+            type="url"
+            placeholder="https://example.com"
+            className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-slate-900 placeholder:text-slate-400 focus:border-primary-400 focus:bg-white focus:ring-primary-400"
+          />
+        </label>
+      </div>
+
       <label className="block">
         <span className="mb-2 block text-sm font-semibold text-slate-700">
-          Business type
+          Message
         </span>
-        <input
-          required
-          name="businessType"
-          type="text"
-          placeholder="Education, Ecommerce, Service, Real Estate..."
-          className="w-full rounded-2xl border-slate-200 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-primary-400 focus:ring-primary-400"
+        <textarea
+          name="message"
+          rows={5}
+          placeholder="Tell me a bit about your business, current challenge, or goal..."
+          className="w-full rounded-[24px] border border-slate-200 bg-slate-50 px-4 py-3.5 text-slate-900 placeholder:text-slate-400 focus:border-primary-400 focus:bg-white focus:ring-primary-400"
         />
       </label>
-      <button type="submit" className="cta-primary w-full">
+
+      <div className="rounded-[24px] border border-primary-100 bg-primary-50/70 p-4">
+        <p className="text-sm leading-7 text-slate-600">
+          After you submit, your details will be sent to your email and the user
+          will be redirected directly to WhatsApp for an immediate conversation.
+        </p>
+      </div>
+
+      <button type="submit" className="cta-primary w-full py-4 text-base">
         Book a Free Strategy Call
       </button>
-      <p className="text-sm leading-6 text-slate-500">
-        Low friction. No long forms. Just your basic details and we&apos;ll start the
-        conversation.
-      </p>
-      {submitted ? (
-        <p className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
-          Your message window has been opened on WhatsApp.
-        </p>
-      ) : null}
     </form>
   );
 }
